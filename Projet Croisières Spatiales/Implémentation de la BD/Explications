@@ -1,0 +1,11 @@
+Je vais expliquer ici les mots clés que j'utilise dans la BD qu'on n'a jamais vues en cours
+Comme ca c'est plus lisible ;)
+
+1. AUTO_INCREMENT : 
+Si on spécifie AUTO_INCREMENT à une colonne à sa création,
+cette colonne sera remplie automatiquement à chaque ajout de ligne par une valeur générée en incrémentant la précédente
+
+2. ENUM : 
+enum(a,b,c,...) est un type qui restraint les valeurs possibles d'une colonne
+à a,b,c,... . Si on essaie d'insérer une valeur autre que celles indiquées dans le enum(),
+une erreur est générée. 
