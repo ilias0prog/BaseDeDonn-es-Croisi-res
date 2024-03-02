@@ -14,8 +14,8 @@
 - Contrat
 (finalement j'ai pas fait dans cet ordre la)
 
-ctrl f "issue" pour voir toutes les parties du code qui posent ptobleme
-ctrl f "???" pour voir les éléments dont je ne suis pas sûr
+ctrl f "issue" pour voir toutes les parties du code qui posent probleme
+ctrl f "???" pour voir les éléments dont je ne suis pas sûr, ou la où j'attends une réponse pour avancer
 ctrl f "later" = revenir plus tard
 ctrl f "on update" et "on delete" = les endroits ou il faut ptt préciser le comportement de la BD
 lors des updates/suppressions de lignes (cascade,...)*/
@@ -25,7 +25,7 @@ lors des updates/suppressions de lignes (cascade,...)*/
 DROP TABLE IF EXISTS 'Vaisseaux';
 
 CREATE TABLE 'Vaisseaux' (
-    'Num_vai' varchar(10) NOT NULL,   /*issue : Format de l'identifiant à changer*/
+    'Num_vai' varchar(10) NOT NULL,   /*Combien de charactères pour Num_vai ???*/
     'Type' type NOT NULL/*issue : Comment créer un attribut multiple ?
     Idée de solution : type SET(https://dev.mysql.com/doc/refman/8.0/en/set.html)*/
     'Date' date NOT NULL,
