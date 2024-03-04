@@ -15,7 +15,7 @@
 (finalement j'ai pas fait dans cet ordre la)
 
 ctrl f "issue" pour voir toutes les parties du code qui posent probleme
-ctrl f "???" pour voir les éléments dont je ne suis pas sûr, ou la où j'attends une réponse pour avancer
+ctrl f "??" pour voir les éléments dont je ne suis pas sûr, ou la où j'attends une réponse pour avancer
 ctrl f "later" = revenir plus tard
 ctrl f "on update" et "on delete" = les endroits ou il faut ptt préciser le comportement de la BD
 lors des updates/suppressions de lignes (cascade,...)*/
@@ -23,17 +23,14 @@ lors des updates/suppressions de lignes (cascade,...)*/
 
 
 DROP TABLE IF EXISTS 'Vaisseaux';
-
 CREATE TABLE 'Vaisseaux' (
-    'Num_vai' varchar(10) NOT NULL,   /*Combien de charactères pour Num_vai ???*/
-    'Type' type NOT NULL/*issue : Comment créer un attribut multiple ?
-    Idée de solution : type SET(https://dev.mysql.com/doc/refman/8.0/en/set.html)*/
+    'Num_vai' varchar(10) NOT NULL,   /*Combien de charactères pour Num_vai ??*/
     'Date' date NOT NULL,
     'Prix_achat' float NOT NULL,
-    'Etat' varchar(25), /*varchar(combien ???)*/
+    'Etat' varchar(25), /*varchar(combien ??), on peut mettre un enum ??*/
 
-    PRIMARY KEY ('Num_ai'),
-    FOREIGN KEY ('Num_Contrat') REFERENCES Contrat('Num_cont') /*later: ON DELETE CASCADE*//*later : Clé étrangère ???*/
+    PRIMARY KEY ('Num_vai'),
+    FOREIGN KEY ('Num_Contrat') REFERENCES Contrat('Num_cont') /*later: ON DELETE CASCADE*//*later : Clé étrangère ??*/
 )
 
 DROP TABLE IF EXISTS 'Contrat';
@@ -44,7 +41,8 @@ CREATE TABLE 'Contrat'  (
     'Prix_annuel' float NOT NULL,
 
     PRIMARY KEY  ('Num_cont'),
-    FOREIGN KEY  ('Num_Vaisseau')  REFERENCES Vaisseaux('Num_vai') /*later: ON DELETE CASCADE*/
+    FOREIGN KEY  ('Num_Vaisseau')  REFERENCES Vaisseaux('Num_vai'), /*later: ON DELETE CASCADE*/
+    FOREIGN KEY ('Num_interplanétaire') REFERENCES Compagie_assurance('Num_interPlanetaire')
 )
 
 
@@ -78,6 +76,8 @@ CREATE TABLE 'Reservation' (
 
     PRIMARY KEY ('Num_res'),
     FOREIGN KEY  ('Num_Client') REFERENCES Client('Id_cli'),
+    FOREIGN KEY  ('Code_cabine') REFERENCES  Cabine_spatiale('Code'),
+    FOREIGN KEY ('Nom_acti') REFERENCES Activite('Nom')
     -- issue : Quelles autres clés étrangères ?
 )
 
@@ -87,14 +87,14 @@ CREATE TABLE 'Client'(
     'Mail' varchar(25) NOT NULL,
     'Nom' varchar(25) NOT NULL,
     'Espece' varchar(20) NOT NULL,
-    'tel'  char(10) NOT NULL,
+    'Tel'  char(10) NOT NULL,
 
     PRIMARY KEY ('NCli'),
     
     -- 
     CONSTRAINT check_at_least_one_filled CHECK (
-        ('tel' IS NOT NULL AND 'Mail' IS NULL) OR
-        ('mail' IS NOT NULL AND 'tel' IS NULL)
+        ('Tel' IS NOT NULL AND 'Mail' IS NULL) OR
+        ('mail' IS NOT NULL AND 'Tel' IS NULL)
     )
 )
 
@@ -110,14 +110,14 @@ CREATE TABLE 'Activite' (
 
 DROP TABLE IF EXISTS 'Croisiere';
 CREATE TABLE 'Croisiere' (
-    'Titre_croisiere' varchar(30) NOT NULL,
+    'Titre' varchar(30) NOT NULL,
     'Date_debut' date NOT NULL,
     'Date_fin' date NOT NULL,
     'Planete_depart' enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
     'Planete_arrivee' enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
     'Escales' SET('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
 
-    PRIMARY KEY ('Titre_croisiere'),
+    PRIMARY KEY ('Titre'),
     FOREIGN KEY ('Planete_depart') REFERENCES 'Planete'('Matricule'),
     FOREIGN KEY ('Planete_arrivee') REFERENCES 'Planete'('Matricule'),
     FOREIGN KEY ('Escales') REFERENCES 'Planete'('Matricule'),
