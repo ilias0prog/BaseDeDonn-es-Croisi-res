@@ -8,6 +8,17 @@ CREATE TABLE `Vaisseaux` (
     PRIMARY KEY (`Num_vai`)
 );
 
+DROP TABLE IF EXISTS `Type_vai`;
+CREATE TABLE `Type_vai` (
+    `Marque` varchar(20) NOT NULL,
+    `Modèle` varchar(20) NOT NULL,
+    `véhicule` varchar(10) NOT NULL,
+
+
+    PRIMARY KEY (`véhicule`),
+    FOREIGN KEY (`véhicule`) REFERENCES `Vaisseaux`(`Num_vai`)
+);
+
 DROP TABLE IF EXISTS `Contrat`;
 CREATE TABLE `Contrat`  (
     `Num_cont` varchar(10) NOT NULL,
@@ -20,12 +31,12 @@ CREATE TABLE `Contrat`  (
     PRIMARY KEY  (`Num_cont`),
     KEY `Contrat` (`Num_vaisseau`),
     FOREIGN KEY (`Num_vaisseau`) REFERENCES `Vaisseaux` (`Num_vai`), /*later: ON DELETE CASCADE*/
-   FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagie_assurance` (`Num_interPlanetaire`)
+   FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagnie_assurance` (`Num_interPlanetaire`)
 );
 
 
 DROP TABLE IF EXISTS `Compagnie_assurance`;
-CREATE TABLE `Compagie_assurance` (
+CREATE TABLE `Compagnie_assurance` (
     `Num_interPlanetaire` varchar(20) NOT NULL,
     `Nom` varchar(25) NOT NULL,
 
@@ -33,17 +44,17 @@ CREATE TABLE `Compagie_assurance` (
 );
 
 DROP TABLE IF EXISTS `Cabine_spatiale`;
-CREATE TABLE  `Cabine_spatiale` (
+CREATE TABLE `Cabine_spatiale` (
     `Code` varchar(10) NOT NULL,
     `Capacite` int NOT NULL,
-    `Classe`  ENUM(1,2,3,4,5) NOT NULL, /*Il y`a 5 classes différentes*/
-    `Espece` varchar(20) NOT NULL, /*suggestion : si on veut définir au préalables les espèces on peut utiliser un enum (discrimination ?)*/
-    `Dispo`  boolean NOT NULL DEFAULT FALSE,
+    `Classe` ENUM('1','2','3','4','5'), /*Il y a 5 classes différentes*/
+    `Espece` varchar(20) NOT NULL, /* suggestion : si on veut définir au préalables les espèces on peut utiliser un enum (discrimination ?) */
+    `Dispo` boolean NOT NULL DEFAULT FALSE,
     `Prix_nuit` float NOT NULL,
     `Num_vaisseau` varchar(10) NOT NULL,
 
     PRIMARY KEY (`Code`),
-    FOREIGN KEY  (`Num_Vaisseau`) REFERENCES `Vaisseaux`(`Num_vai`) /*Trigger*/
+    FOREIGN KEY (`Num_vaisseau`) REFERENCES `Vaisseaux`(`Num_vai`) /*Trigger*/
 );
 
 DROP TABLE IF EXISTS `Reservation`;
@@ -98,12 +109,19 @@ CREATE TABLE `Croisiere` (
     `Date_fin` date NOT NULL,
     `Planete_depart` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
     `Planete_arrivee` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
-    `Escales` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
-
+    `Chef` varchar(10) NOT NULL,
+    `Pilote` varchar(10) NOT NULL,
+    `Num_vai` varchar(10) NOT NULL,
     PRIMARY KEY (`Titre`),
-    FOREIGN KEY (`Planete_depart`) REFERENCES `Planete`(`Matricule`),
-    FOREIGN KEY (`Planete_arrivee`) REFERENCES `Planete`(`Matricule`),
-    FOREIGN KEY (`Escales`) REFERENCES `Planete`(`Matricule`)
+    KEY `Croisiere_1` (`Pilote`),
+    KEY `Croisiere_2` (`Chef`),
+    KEY `Croisiere_3` (`Num_vai`),
+    FOREIGN KEY (`Planete_depart`) REFERENCES `Planete`(`Nom`),
+    FOREIGN KEY (`Planete_arrivee`) REFERENCES `Planete`(`Nom`),
+    FOREIGN KEY (`Pilote`) REFERENCES `Astro_pilote`(`Matricule`),
+    FOREIGN KEY (`Chef`) REFERENCES `Astro_pilote`(`Matricule`),
+    FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux`(`Num_vai`)
+
     -- Clairement cette table faudra la refaire, je sens que c`est de la merde
 );
 
@@ -140,13 +158,12 @@ CREATE TABLE `Chef`(
 
 
 DROP TABLE IF EXISTS `Planete`;
-CREATE TABLE `Planete`
-(
-    'Nom'   varchar(30) NOT NULL,
-    'NB_habit'     int NOT NULL,
-    'Env_temp' varchar(30) ,
-    'Env_bio'  varchar(30) ,
-    PRIMARY KEY ('Nom')
+CREATE TABLE `Planete`(
+    `Nom` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
+    `NB_habit`    int NOT NULL,
+    `Env_temp` varchar(30) ,
+    `Env_bio`  varchar(30) ,
+    PRIMARY KEY (`Nom`)
 );
 
 DROP TABLE IF EXISTS `Escale`;
