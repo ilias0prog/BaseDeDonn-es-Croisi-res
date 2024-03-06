@@ -18,9 +18,9 @@ CREATE TABLE `Contrat`  (
     `Num_interplanétaire` varchar(20) NOT NULL,
 
     PRIMARY KEY  (`Num_cont`),
-    KEY `Contrat` ('Num_vaisseau'),
-    FOREIGN KEY  (`Num_Vaisseau`)  REFERENCES `Vaisseaux`(`Num_vai`), /*later: ON DELETE CASCADE*/
-    FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagie_assurance`(`Num_interPlanetaire`)
+    KEY `Contrat` (`Num_vaisseau`),
+    FOREIGN KEY (`Num_vaisseau`) REFERENCES `Vaisseaux` (`Num_vai`), /*later: ON DELETE CASCADE*/
+   FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagie_assurance` (`Num_interPlanetaire`)
 );
 
 
@@ -109,18 +109,16 @@ CREATE TABLE `Croisiere` (
 
 DROP TABLE IF EXISTS `Personnel`;
 CREATE TABLE `Personnel`(
-    'Matricule' varchar(10) NOT NULL,
-    'Nom' varchar(25) NOT NULL,
-    'Prenom' varchar(25) NOT NULL,
+    `Matricule` varchar(10) NOT NULL,
+    `Nom` varchar(25) NOT NULL,
+    `Prenom` varchar(25) NOT NULL,
     `Salaire_annu` float NOT NULL,
     `Chef` varchar(10) ,
     `Astro_pilote` varchar(10) ,
     `Origine` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
 
-    PRIMARY KEY(`Matricule`),
-    FOREIGN KEY (`Chef`) REFERENCES `Chef`(`Matricule`),
-    FOREIGN KEY (`Astro_pilote`) REFERENCES `Astro_pilote`(`Matricule`),
-    FOREIGN KEY ('Origine') REFERENCES `Planete`(`Nom`)
+    PRIMARY KEY(`Matricule`)
+
 );
 
 DROP TABLE IF EXISTS `Astro_pilote`;
@@ -129,7 +127,7 @@ Create TABLE `Astro_pilote`(
     `Nb_heures_vol` int NOT NULL,
     `Ecole` varchar(25) NOT NULL,
     PRIMARY KEY(`Matricule`),
-    FOREIGN KEY ('Matricule') REFERENCES `Personnel`(`Matricule`)
+    FOREIGN KEY (`Matricule`) REFERENCES `Personnel`(`Matricule`)
 );
 
 DROP TABLE IF EXISTS `Chef`;
@@ -137,20 +135,12 @@ CREATE TABLE `Chef`(
     `Matricule` varchar(10) NOT NULL,
     `Prime` float NOT NULL,
     PRIMARY KEY(`Matricule`),
-    FOREIGN KEY ('Matricule') REFERENCES `Personnel`(`Matricule`)
+    FOREIGN KEY (`Matricule`) REFERENCES `Personnel`(`Matricule`)
 );
+
 
 DROP TABLE IF EXISTS `Planete`;
-CREATE TABLE `Planete`(
-    `Nom` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
-    `Matricule` varchar(10) NOT NULL,
-    `Distance` float NOT NULL,
-    `Type` enum('Gazeuse','Rocheuse') NOT NULL,
-    PRIMARY KEY(`Matricule`)
-);
-
-DROP TABLE IF EXISTS 'Planete';
-CREATE TABLE 'Planete'
+CREATE TABLE `Planete`
 (
     'Nom'   varchar(30) NOT NULL,
     'NB_habit'     int NOT NULL,
@@ -169,3 +159,4 @@ CREATE TABLE `Escale`(
 );
 
 /*_______________________Reprendre ici_______________________*/
+
