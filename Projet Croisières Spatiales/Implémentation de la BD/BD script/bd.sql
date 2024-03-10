@@ -10,27 +10,27 @@ CREATE TABLE `Vaisseaux` (
 
 DROP TABLE IF EXISTS `Compagnie_assurance`;
 CREATE TABLE `Compagnie_assurance` (
-    `Num_interPlanetaire` varchar(20) NOT NULL,
+    `Num_interplanetaire` varchar(20) NOT NULL,
     `Nom` varchar(25) NOT NULL,
 
-    PRIMARY KEY (`Num_interPlanetaire`)
+    PRIMARY KEY (`Num_interplanetaire`)
 );
 
 DROP TABLE IF EXISTS `Client`;
 CREATE TABLE `Client`(
-    `NCLI` varchar(8) NOT NULL,
+    `Ncli` varchar(8) NOT NULL,
     `Mail` varchar(25) NOT NULL,
     `Nom` varchar(25) NOT NULL,
     `Espece` varchar(20) NOT NULL,
     `Tel`  char(10) NOT NULL,
 
-    PRIMARY KEY (`NCLI`)
+    PRIMARY KEY (`Ncli`)
 
-    --
-   /* CONSTRAINT check_at_least_one_filled CHECK (
+    
+    CONSTRAINT check_at_least_one_filled CHECK (
         (`Tel` IS NOT NULL AND `Mail` IS NULL) OR
         (`mail` IS NOT NULL AND `Tel` IS NULL)
-    )*/
+    )
 );
 
 DROP TABLE IF EXISTS `Personnel`;
@@ -50,7 +50,7 @@ CREATE TABLE `Personnel`(
 DROP TABLE IF EXISTS `Planete`;
 CREATE TABLE `Planete`(
     `Nom` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
-    `NB_habit`    int NOT NULL,
+    `Nb_habit`    int NOT NULL,
     `Env_temp` varchar(30) ,
     `Env_bio`  varchar(30) ,
     PRIMARY KEY (`Nom`)
@@ -87,11 +87,11 @@ DROP TABLE IF EXISTS `Type_vai`;
 CREATE TABLE `Type_vai` (
     `Marque` varchar(20) NOT NULL,
     `Modèle` varchar(20) NOT NULL,
-    `véhicule` varchar(10) NOT NULL,
+    `Num_vai` varchar(10) NOT NULL,
 
 
-    PRIMARY KEY (`véhicule`),
-    FOREIGN KEY (`véhicule`) REFERENCES `Vaisseaux`(`Num_vai`)
+    PRIMARY KEY (`Num_vai`),
+    FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux`(`Num_vai`)
 );
 
 DROP TABLE IF EXISTS `Cabine_spatiale`;
@@ -102,10 +102,10 @@ CREATE TABLE `Cabine_spatiale` (
     `Espece` varchar(20) NOT NULL, /* suggestion : si on veut définir au préalables les espèces on peut utiliser un enum (discrimination ?) */
     `Dispo` boolean NOT NULL DEFAULT FALSE,
     `Prix_nuit` float NOT NULL,
-    `Num_vaisseau` varchar(10) NOT NULL,
+    `Num_vai` varchar(10) NOT NULL,
 
     PRIMARY KEY (`Code`),
-    FOREIGN KEY (`Num_vaisseau`) REFERENCES `Vaisseaux`(`Num_vai`) /*Trigger*/
+    FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux`(`Num_vai`) /*Trigger*/
 );
 
 DROP TABLE IF EXISTS `Contrat`;
@@ -114,13 +114,13 @@ CREATE TABLE `Contrat`  (
     `Date_debut` date NOT  NULL,
     `Date_fin` date NOT NULL,
     `Prix_annuel` float NOT NULL,
-    `Num_vaisseau` varchar(10) NOT NULL,
+    `Num_vai` varchar(10) NOT NULL,
     `Num_interplanétaire` varchar(20) NOT NULL,
 
     PRIMARY KEY  (`Num_cont`),
-    KEY `Contrat` (`Num_vaisseau`),
-    FOREIGN KEY (`Num_vaisseau`) REFERENCES `Vaisseaux` (`Num_vai`), /*later: ON DELETE CASCADE*/
-   FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagnie_assurance` (`Num_interPlanetaire`)
+    KEY `Contrat` (`Num_vais`),
+    FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux` (`Num_vai`), /*later: ON DELETE CASCADE*/
+   FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagnie_assurance` (`Num_interplanetaire`)
 );
 
 
@@ -131,13 +131,13 @@ CREATE TABLE `Reservation` (
     `Moyen_pay` enum('CarteBancaire','Crypto','Stardust'), /*later : on peut imaginer différents moyens de paiement*/
     `Status` enum('Confirmee','Attente','Annulee') NOT NULL,
     `Date` date NOT NULL,
-    `NCLI` varchar(8) NOT NULL,
+    `Ncli` varchar(8) NOT NULL,
     `Code_cabine` varchar(10) NOT NULL,
     `Nom_acti` varchar(30) NOT NULL,
 
     PRIMARY KEY (`Num_res`),
-    KEY `Reservation` (`NCLI`),/*Trigger*/
-    FOREIGN KEY  (`NCLI`) REFERENCES `Client`( `NCLI`),
+    KEY `Reservation` (`Ncli`),/*Trigger*/
+    FOREIGN KEY  (`Ncli`) REFERENCES `Client`( `Ncli`),
     FOREIGN KEY  (`Code_cabine`) REFERENCES  `Cabine_spatiale`(`Code`),
     FOREIGN KEY (`Nom_acti`) REFERENCES `Activite`(`Nom`)
     -- issue : Quelles autres clés étrangères ?
@@ -172,10 +172,10 @@ CREATE TABLE `Croisiere` (
 
 DROP TABLE IF EXISTS `Escale`;
 CREATE TABLE `Escale`(
-    `Nom_planète` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
+    `Planete` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
     `Titre_croisiere` varchar(30) NOT NULL,
-    PRIMARY KEY(`Nom_planète`,`Titre_croisiere`),
-    FOREIGN KEY (`Nom_planète`) REFERENCES `Planete`(`Nom`),
+    PRIMARY KEY(`Planete`,`Titre_croisiere`),
+    FOREIGN KEY (`Planete`) REFERENCES `Planete`(`Nom`),
     FOREIGN KEY (`Titre_croisiere`) REFERENCES `Croisiere`(`Titre`)
 );
 
