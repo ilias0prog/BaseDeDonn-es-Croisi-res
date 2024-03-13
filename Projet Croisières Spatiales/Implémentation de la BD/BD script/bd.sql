@@ -19,7 +19,7 @@ CREATE TABLE `Compagnie_assurance` (
 DROP TABLE IF EXISTS `Client`;
 CREATE TABLE `Client`(
     `Ncli` varchar(8) NOT NULL,
-    `Mail` varchar(25) NOT NULL,
+    `Mail` varchar(50) NOT NULL,
     `Nom` varchar(25) NOT NULL,
     `Espece` varchar(20) NOT NULL,
     `Tel`  char(10) NOT NULL,
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `Astro_pilote`;
 Create TABLE `Astro_pilote`(
     `Matricule` varchar(10) NOT NULL,
     `Nb_heures_vol` int NOT NULL,
-    `Ecole` varchar(25) NOT NULL,
+    `Ecole` varchar(100) NOT NULL,
     PRIMARY KEY(`Matricule`),
     FOREIGN KEY (`Matricule`) REFERENCES `Personnel`(`Matricule`)
 );
@@ -118,7 +118,7 @@ CREATE TABLE `Contrat`  (
     `Num_interplanétaire` varchar(20) NOT NULL,
 
     PRIMARY KEY  (`Num_cont`),
-    KEY `Contrat` (`Num_vais`),
+    KEY `Contrat` (`Num_vai`),
     FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux` (`Num_vai`), /*later: ON DELETE CASCADE*/
    FOREIGN KEY (`Num_interplanétaire`) REFERENCES `Compagnie_assurance` (`Num_interplanetaire`)
 );
@@ -162,7 +162,7 @@ CREATE TABLE `Croisiere` (
     FOREIGN KEY (`Planete_depart`) REFERENCES `Planete`(`Nom`),
     FOREIGN KEY (`Planete_arrivee`) REFERENCES `Planete`(`Nom`),
     FOREIGN KEY (`Pilote`) REFERENCES `Astro_pilote`(`Matricule`),
-    FOREIGN KEY (`Chef`) REFERENCES `chef`(`Matricule`),
+    FOREIGN KEY (`Chef`) REFERENCES `Chef`(`Matricule`),
     FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux`(`Num_vai`)
 
     -- Clairement cette table faudra la refaire, je sens que c`est de la merde
