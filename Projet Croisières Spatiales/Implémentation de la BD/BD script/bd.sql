@@ -39,8 +39,8 @@ CREATE TABLE `Personnel`(
     `Nom` varchar(25) NOT NULL,
     `Prenom` varchar(25) NOT NULL,
     `Salaire_annu` float NOT NULL,
-    `Chef` varchar(10) ,
-    `Astro_pilote` varchar(10) ,
+    `Chef` boolean,
+    `Astro_pilote` boolean,
     `Origine` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
 
     PRIMARY KEY(`Matricule`)
