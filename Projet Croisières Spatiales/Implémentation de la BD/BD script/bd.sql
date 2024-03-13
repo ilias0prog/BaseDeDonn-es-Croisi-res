@@ -52,7 +52,7 @@ CREATE TABLE `Planete`(
     `Nom` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
     `Nb_habit`    int NOT NULL,
     `Env_temp` float NOT NULL,
-    `Env_bio`  float NOT NULL,
+    `Env_bio`  varchar(100) NOT NULL,
     PRIMARY KEY (`Nom`)
 );
 
