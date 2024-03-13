@@ -51,8 +51,8 @@ DROP TABLE IF EXISTS `Planete`;
 CREATE TABLE `Planete`(
     `Nom` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
     `Nb_habit`    int NOT NULL,
-    `Env_temp` varchar(30) ,
-    `Env_bio`  varchar(30) ,
+    `Env_temp` float NOT NULL,
+    `Env_bio`  float NOT NULL,
     PRIMARY KEY (`Nom`)
 );
 
