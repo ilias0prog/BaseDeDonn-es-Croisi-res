@@ -127,3 +127,12 @@ INSERT INTO Escale VALUES
     ('Jupiter', 'Croisiere005'),
     ('Uranus', 'Croisiere006'),
     ('Neptune', 'Croisiere002');
+
+INSERT INTO Planete VALUES 
+    ('Mercure', 230900, 37, 'Aridité extrême'),
+    ('Venus', 120000, 2, 'Atmosphère dense'),
+    ('Terre', 7800000000, 15, 'Diversifié'),
+    ('Mars', 500910, -10, 'Arène désertique'),
+    ('Jupiter', 1000000, -18, 'Gaz et tempête'),
+    ('Uranus', 8901923, 20, 'Gaz et glace'),
+    ('Neptune', 391830, 29, 'Gaz et glace');
