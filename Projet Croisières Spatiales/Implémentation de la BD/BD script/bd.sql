@@ -137,7 +137,7 @@ CREATE TABLE `Reservation` (
 
     PRIMARY KEY (`Num_res`),
     KEY `Reservation` (`Ncli`),/*Trigger*/
-    FOREIGN KEY  (`Ncli`) REFERENCES `Client`( `Ncli`),
+    FOREIGN KEY  (`Ncli`) REFERENCES `Client`( `Ncli`) ON DELETE CASCADE,
     FOREIGN KEY  (`Code_cabine`) REFERENCES  `Cabine_spatiale`(`Code`),
     FOREIGN KEY (`Nom_acti`) REFERENCES `Activite`(`Nom`)
     -- issue : Quelles autres clés étrangères ?
