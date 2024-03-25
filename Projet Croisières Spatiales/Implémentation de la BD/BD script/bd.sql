@@ -19,18 +19,12 @@ CREATE TABLE `Compagnie_assurance` (
 DROP TABLE IF EXISTS `Client`;
 CREATE TABLE `Client`(
     `Ncli` varchar(8) NOT NULL,
-    `Mail` varchar(50) NOT NULL,
-    `Nom` varchar(25) NOT NULL,
-    `Espece` varchar(20) NOT NULL,
-    `Tel`  char(10) NOT NULL,
+    `Mail` varchar(50),
+    `Nom` varchar(25),
+    `Espece` varchar(20),
+    `Tel`  char(10),
 
     PRIMARY KEY (`Ncli`)
-
-    
-    CONSTRAINT check_at_least_one_filled CHECK (
-        (`Tel` IS NOT NULL AND `Mail` IS NULL) OR
-        (`mail` IS NOT NULL AND `Tel` IS NULL)
-    )
 );
 
 DROP TABLE IF EXISTS `Personnel`;
@@ -137,7 +131,7 @@ CREATE TABLE `Reservation` (
 
     PRIMARY KEY (`Num_res`),
     KEY `Reservation` (`Ncli`),/*Trigger*/
-    FOREIGN KEY  (`Ncli`) REFERENCES `Client`( `Ncli`) ON DELETE CASCADE,
+    FOREIGN KEY  (`Ncli`) REFERENCES `Client`( `Ncli`),
     FOREIGN KEY  (`Code_cabine`) REFERENCES  `Cabine_spatiale`(`Code`),
     FOREIGN KEY (`Nom_acti`) REFERENCES `Activite`(`Nom`)
     -- issue : Quelles autres clés étrangères ?
