@@ -103,6 +103,15 @@ INSERT INTO Reservation VALUES
     ('RES008', 'Crypto', 'Attente', '2024-08-01', '01234567', 'CAB008', 'Projection de films'),
     ('RES009', 'Stardust', 'Annulee', '2024-09-01', '10234567', 'CAB009', 'Concert extraterrestre');
 
+INSERT INTO Planete VALUES
+    ('Mercure', 230900, 37, 'Aridité extrême'),
+    ('Venus', 120000, 2, 'Atmosphère dense'),
+    ('Terre', 780000, 15, 'Diversifié'),
+    ('Mars', 500910, -10, 'Arène désertique'),
+    ('Jupiter', 1000000, -18, 'Gaz et tempête'),
+    ('Uranus', 8901923, 20, 'Gaz et glace'),
+    ('Neptune', 391830, 29, 'Gaz et glace');
+
 INSERT INTO Croisiere VALUES
     ('Croisiere001', '2024-01-01', '2024-01-10', 'Terre', 'Mars', '7890123456', '2345678901', '12345678'),
     ('Croisiere002', '2024-02-01', '2024-02-10', 'Jupiter', 'Neptune', '7890123456', '2345678901', '23456789'),
@@ -125,14 +134,4 @@ INSERT INTO Escale VALUES
     ('Terre', 'Croisiere005'),
     ('Mars', 'Croisiere009'),
     ('Jupiter', 'Croisiere005'),
-    ('Uranus', 'Croisiere006'),
     ('Neptune', 'Croisiere002');
-
-INSERT INTO Planete VALUES 
-    ('Mercure', 230900, 37, 'Aridité extrême'),
-    ('Venus', 120000, 2, 'Atmosphère dense'),
-    ('Terre', 7800000000, 15, 'Diversifié'),
-    ('Mars', 500910, -10, 'Arène désertique'),
-    ('Jupiter', 1000000, -18, 'Gaz et tempête'),
-    ('Uranus', 8901923, 20, 'Gaz et glace'),
-    ('Neptune', 391830, 29, 'Gaz et glace');
