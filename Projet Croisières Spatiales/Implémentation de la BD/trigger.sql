@@ -42,9 +42,17 @@ FOR EACH ROW BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine ne convient pas à ce client';
     END IF;
 END
-    
 
---Non utuliser--
+CREATE TRIGGER ChangementDEspece BEFORE UPDATE ON `Client`
+FOR EACH ROW BEGIN
+    -- Si le client change d'espece alors qu'il a réservé une cabine, toutes les colonnes sont update sauf Espece
+    IF NEW.`Espece` != OLD.`Espece` 
+    AND `Ncli` IN SELECT `Ncli` FROM  `Reservation`
+    THEN SET NEW.`Espece` = OLD.`Espece`
+    END IF;
+END;
+
+--Non utulisé--
 
 CREATE TRIGGER LibererCabineDeleteReservation AFTER DELETE ON  `Reservation`
 FOR EACH ROW BEGIN
