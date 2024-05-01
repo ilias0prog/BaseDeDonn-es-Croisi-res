@@ -8,7 +8,7 @@ Coex Temps grave bio (Insert Planette,Update planette spatial)
 */
 
 
-CREATE TRIGGER ReserverCabineOccupee BEFORE INSERT ON Reservation
+CREATE TRIGGER ReserverCabineOccupee_Select BEFORE INSERT ON Reservation
 FOR EACH ROW BEGIN
     DECLARE dispoCabine BOOLEAN;
     -- Si la cabine qu'on essaie de réserver est occupée, on crée une erreur ce qui annule l'insertion
@@ -17,6 +17,14 @@ FOR EACH ROW BEGIN
     END IF;
 END;
 
+CREATE TRIGGER ReserverCabineOccupee_UPDATE BEFORE UPDATE ON Reservation
+FOR EACH ROW BEGIN
+    DECLARE dispoCabine BOOLEAN;
+    -- Si la cabine qu'on essaie de réserver est occupée, on crée une erreur ce qui annule la mise à jour
+    IF (NEW.Code_cabine IN (SELECT Code FROM Cabine_spatiale WHERE `Dispo` = TRUE)) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine est déjà occupée.';
+    END IF;
+END;
 
 CREATE TRIGGER ReserverCabine AFTER INSERT ON Reservation
 FOR EACH ROW BEGIN
@@ -42,9 +50,17 @@ FOR EACH ROW BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine ne convient pas à ce client';
     END IF;
 END
-    
 
---Non utuliser--
+CREATE TRIGGER ChangementDEspece BEFORE UPDATE ON `Client`
+FOR EACH ROW BEGIN
+    -- Si le client change d'espece alors qu'il a réservé une cabine, toutes les colonnes sont update sauf Espece
+    IF NEW.`Espece` != OLD.`Espece` 
+    AND `Ncli` IN SELECT `Ncli` FROM  `Reservation`
+    THEN SET NEW.`Espece` = OLD.`Espece`
+    END IF;
+END;
+
+--Non utulisé--
 
 CREATE TRIGGER LibererCabineDeleteReservation AFTER DELETE ON  `Reservation`
 FOR EACH ROW BEGIN
