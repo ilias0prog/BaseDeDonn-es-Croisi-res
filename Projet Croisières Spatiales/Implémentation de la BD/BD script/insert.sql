@@ -33,7 +33,7 @@ INSERT INTO Client VALUES
     ('90123453', 'harry.macguire@icloud.com', 'Macguire', 'Humain', '0677342055'),
     ('01234567', 'stelamounth@yandex.com', 'Mounth', 'Alien', '0457685549'),
     ('10234567', 'mike.bene@live.com', 'Bene', 'Humain', '0474829248'),
-    ('11234567', 'livio.johnson@zoho.com', 'Johnson', 'Alien', '0753135667');
+    ('11234567', 'livio.johnson@zoho.com', 'Johnson', 'Alien', '0753135667'),
     ('22334455', 'laura.smith@gmail.com', 'Smith', 'Humain', '0427869210'),
     ('33445566', 'pierre.louc@yahoo.com', 'Louc', 'Alien', '0490229567'),
     ('44556677', 'sophie.dufresne@hotmail.com', 'Dufresne', 'Humain', '0465956234'),
@@ -67,7 +67,7 @@ INSERT INTO Astro_pilote VALUES
     ('6789012345', 500, 'Ecole des Pilotes Intergalactiques'),
     ('2345678901', 750, 'Académie Spatiale de la Galaxie'),
     ('8901234567', 1000, 'Université Stellaire de l Espace'),
-    ('4567890123', 800, 'Centre de Formation Astronautique Lunaire')
+    ('4567890123', 800, 'Centre de Formation Astronautique Lunaire');
 
 INSERT INTO Type_vai VALUES
     ('SpaceX', 'Falcon 9', '12345678'),
@@ -89,10 +89,21 @@ INSERT INTO Cabine_spatiale VALUES
     ('CAB006', 1, '1', 'Humain', TRUE, 160.00, '67890123'),
     ('CAB007', 3, '2', 'Alien', TRUE, 120.00, '78901234'),
     ('CAB008', 2, '3', 'Alien', TRUE, 190.00, '89012345'),
-    ('CAB009', 2, '4', 'Humain', TRUE, 170.00, '90123456')
-    ('CAB010', 1, '5', 'Alien', FALSE, 70.00, '12345678'),
-    ('CAB011', 1, '1', 'Humain', FALSE, 130.00, '12345678'),
-    ('CAB012', 2, '2', 'Alien', FALSE, 110.00, '23456789');
+    ('CAB009', 2, '4', 'Humain', TRUE, 170.00, '90123456'),
+    ('CAB010', 1, '5', 'Alien', TRUE, 70.00, '12345678'),
+    ('CAB011', 1, '3', 'Humain', TRUE, 130.00, '12345678'),
+    ('CAB012', 3, '2', 'Alien', TRUE, 85.00, '23456789'),
+    ('CAB013', 2, '4', 'Alien', TRUE, 100.00, '56789012'),
+    ('CAB014', 4, '2', 'Human', TRUE, 80.00, '45678901'),
+    ('CAB015', 5, '5', 'Alien', TRUE, 230.00, '45678901'),
+    ('CAB016', 2, '1', 'Human', TRUE, 120.00, '90123456'),
+    ('CAB017', 1, '1', 'Alien', TRUE, 100.00, '23456789'),
+    ('CAB018', 4, '5', 'Alien', TRUE, 200.00, '89012345'),
+    ('CAB019', 2, '1', 'Human', TRUE, 90.00, '67890123'),
+    ('CAB020', 3, '1', 'Alien', FALSE, 190.00, '56789012'),
+    ('CAB021', 2, '1', 'Human', FALSE, 120.00, '78901234');
+
+
 
 INSERT INTO Contrat VALUES
     ('CONT001', '2024-01-01', '2027-01-01', 500000.00, '12345678','123446784'),
@@ -114,7 +125,7 @@ INSERT INTO Reservation VALUES
     ('RES006', 'Stardust', 'Attente', '2024-06-01', '89012342', 'CAB006', 'Danse interstellaire'),
     ('RES007', 'CarteBancaire', 'Confirmee', '2024-07-01', '90123453', 'CAB007', 'Méditation spatiale'),
     ('RES008', 'Crypto', 'Attente', '2024-08-01', '01234567', 'CAB008', 'Projection de films'),
-    ('RES009', 'Stardust', 'Annulee', '2024-09-01', '10234567', 'CAB009', 'Concert extraterrestre');
+    ('RES009', 'Stardust', 'Attente', '2024-09-01', '10234567', 'CAB009', 'Concert extraterrestre'),
     ('RES010', 'CarteBancaire', 'Confirmee', '2024-10-01', '22334455', 'CAB010', 'Simulateur de gravité'),
     ('RES011', 'Crypto', 'Attente', '2024-11-01', '33445566', 'CAB011', 'Exploration spatiale'),
     ('RES012', 'Stardust', 'Confirmee', '2024-12-01', '44556677', 'CAB012', 'Méditation spatiale'),
@@ -123,7 +134,7 @@ INSERT INTO Reservation VALUES
     ('RES015', 'Stardust', 'Attente', '2025-03-01', '77889900', 'CAB015', 'Cuisine intergalactique'),
     ('RES016', 'CarteBancaire', 'Confirmee', '2025-04-01', '88990011', 'CAB016', 'Projection de films'),
     ('RES017', 'Crypto', 'Attente', '2025-05-01', '99001122', 'CAB017', 'Simulateur de gravité'),
-    ('RES018', 'Stardust', 'Annulee', '2025-06-01', '00112233', 'CAB018', 'Observation des étoiles'),
+    ('RES018', 'Stardust', 'Attente', '2025-06-01', '00112233', 'CAB018', 'Observation des étoiles'),
     ('RES019', 'CarteBancaire', 'Attente', '2025-07-01', '11223344', 'CAB019', 'Atelier de robots');
 
 INSERT INTO Planete VALUES
