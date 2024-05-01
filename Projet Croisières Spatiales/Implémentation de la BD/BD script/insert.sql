@@ -9,14 +9,14 @@ INSERT INTO Activite VALUES ('Observation des étoiles', '03:00:00', 25),
                             ('Concert extraterrestre', '02:30:00', 45);
 
 INSERT INTO Vaisseaux VALUES
-    ('12345678', '2024-03-06', 250000, 'intact'),
+    ('12345678', '2024-03-06', 250000, 'endommagé'),
     ('23456789', '2024-03-06', 300000, 'intact'),
     ('34567890', '2024-03-06', 500000, 'intact'),
-    ('45678901', '2024-03-06', 400000, 'intact'),
+    ('45678901', '2024-03-06', 400000, 'endommagé'),
     ('56789012', '2024-03-06', 350000, 'intact'),
     ('67890123', '2024-03-06', 200000, 'intact'),
-    ('78901234', '2024-03-06', 150000, 'intact'),
-    ('89012345', '2024-03-06', 50000, 'intact'),
+    ('78901234', '2024-03-06', 150000, 'endommagé'),
+    ('89012345', '2024-03-06', 50000, 'endommagé'),
     ('90123456', '2024-03-06', 450000, 'intact');
 
 INSERT INTO Compagnie_assurance VALUES
@@ -141,8 +141,8 @@ INSERT INTO Planete VALUES
     ('Mercure', 230900, 37, 'Tropical'),
     ('Venus', 120000, 2, 'Désertique'),
     ('Terre', 780000, 15, 'Tempéré'),
-    ('Mars', 500910, -10, 'Artique'),
-    ('Jupiter', 1000000, -18, 'Artique'),
+    ('Mars', 500910, -10, 'Arctique'),
+    ('Jupiter', 1000000, -18, 'Arctique'),
     ('Uranus', 8901923, 20, 'Tempéré'),
     ('Neptune', 391830, 29, 'Tropical');
 

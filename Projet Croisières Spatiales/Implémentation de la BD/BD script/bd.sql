@@ -52,7 +52,7 @@ CREATE TABLE `Planete`(
 
 DROP TABLE IF EXISTS `Activite`;
 CREATE TABLE `Activite` (
-    `Nom` varchar(30) NOT NULL, /*later : idées d`activités ?*/
+    `Nom` varchar(30) NOT NULL,
     `Duree` time NOT NULL,
     `Prix` float NOT NULL,
 
@@ -92,14 +92,14 @@ DROP TABLE IF EXISTS `Cabine_spatiale`;
 CREATE TABLE `Cabine_spatiale` (
     `Code` varchar(10) NOT NULL,
     `Capacite` int NOT NULL,
-    `Classe` ENUM('1','2','3','4','5'), /*Il y a 5 classes différentes*/
-    `Espece` varchar(20) NOT NULL, /* suggestion : si on veut définir au préalables les espèces on peut utiliser un enum (discrimination ?) */
+    `Classe` ENUM('1','2','3','4','5'), 
+    `Espece` varchar(20) NOT NULL, 
     `Dispo` boolean NOT NULL DEFAULT FALSE,
     `Prix_nuit` float NOT NULL,
     `Num_vai` varchar(10) NOT NULL,
 
     PRIMARY KEY (`Code`),
-    FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux`(`Num_vai`) /*Trigger*/
+    FOREIGN KEY (`Num_vai`) REFERENCES `Vaisseaux`(`Num_vai`) 
 );
 
 
@@ -125,7 +125,7 @@ DROP TABLE IF EXISTS `Reservation`;
 CREATE TABLE `Reservation` (
     `Num_res` varchar(10) NOT NULL,
     `Moyen_pay` enum('CarteBancaire','Crypto','Stardust'), /*later : on peut imaginer différents moyens de paiement*/
-    `Status` enum('Confirmee','Attente','Annulee') NOT NULL,
+    `Status` enum('Confirmee','Attente') NOT NULL,
     `Date` date NOT NULL,
     `Ncli` varchar(8) NOT NULL,
     `Code_cabine` varchar(10) NOT NULL,
