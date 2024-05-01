@@ -34,6 +34,16 @@ INSERT INTO Client VALUES
     ('01234567', 'stelamounth@yandex.com', 'Mounth', 'Alien', '0457685549'),
     ('10234567', 'mike.bene@live.com', 'Bene', 'Humain', '0474829248'),
     ('11234567', 'livio.johnson@zoho.com', 'Johnson', 'Alien', '0753135667');
+    ('22334455', 'laura.smith@gmail.com', 'Smith', 'Humain', '0427869210'),
+    ('33445566', 'pierre.louc@yahoo.com', 'Louc', 'Alien', '0490229567'),
+    ('44556677', 'sophie.dufresne@hotmail.com', 'Dufresne', 'Humain', '0465956234'),
+    ('55667788', 'alex.moreau@outlook.com', 'Moreau', 'Alien', '0498765432'),
+    ('66778899', 'samuel.brown@aol.com', 'Brown', 'Humain', '0467891234'),
+    ('77889900', 'eva.nguyen@protonmail.com', 'Nguyen', 'Alien','0478123456'),
+    ('88990011', 'oliver.puir@icloud.com', 'puir', 'Humain', '0487561234'),
+    ('99001122', 'lily.chan@yandex.com', 'Chan', 'Alien', '0498234567'),
+    ('00112233', 'david.peterson@live.com', 'Peterson', 'Humain', '0478956234'),
+    ('11223344', 'nina.gomez@zoho.com', 'Gomez', 'Alien', '0467891234');
 
 
 INSERT INTO Personnel VALUES
@@ -57,7 +67,7 @@ INSERT INTO Astro_pilote VALUES
     ('6789012345', 500, 'Ecole des Pilotes Intergalactiques'),
     ('2345678901', 750, 'Académie Spatiale de la Galaxie'),
     ('8901234567', 1000, 'Université Stellaire de l Espace'),
-    ('4567890123', 800, 'Centre de Formation Astronautique Lunaire');
+    ('4567890123', 800, 'Centre de Formation Astronautique Lunaire')
 
 INSERT INTO Type_vai VALUES
     ('SpaceX', 'Falcon 9', '12345678'),
@@ -105,6 +115,16 @@ INSERT INTO Reservation VALUES
     ('RES007', 'CarteBancaire', 'Confirmee', '2024-07-01', '90123453', 'CAB007', 'Méditation spatiale'),
     ('RES008', 'Crypto', 'Attente', '2024-08-01', '01234567', 'CAB008', 'Projection de films'),
     ('RES009', 'Stardust', 'Annulee', '2024-09-01', '10234567', 'CAB009', 'Concert extraterrestre');
+    ('RES010', 'CarteBancaire', 'Confirmee', '2024-10-01', '22334455', 'CAB010', 'Observation des nébuleuses'),
+    ('RES011', 'Crypto', 'Attente', '2024-11-01', '33445566', 'CAB011', 'Tour en vaisseau spatial'),
+    ('RES012', 'Stardust', 'Confirmee', '2024-12-01', '44556677', 'CAB012', 'Simulation de sauts hyperspatiaux'),
+    ('RES013', 'CarteBancaire', 'Confirmee', '2025-01-01', '55667788', 'CAB013', 'Rencontre avec des extraterrestres'),
+    ('RES014', 'Crypto', 'Confirmee', '2025-02-01', '66778899', 'CAB014', 'Observation de planètes lointaines'),
+    ('RES015', 'Stardust', 'Attente', '2025-03-01', '77889900', 'CAB015', 'Expérience de téléportation'),
+    ('RES016', 'CarteBancaire', 'Confirmee', '2025-04-01', '88990011', 'CAB016', 'Exploration d une station spatiale abandonnée'),
+    ('RES017', 'Crypto', 'Attente', '2025-05-01', '99001122', 'CAB017', 'Atelier de construction de vaisseaux'),
+    ('RES018', 'Stardust', 'Annulee', '2025-06-01', '00112233', 'CAB018', 'Soirée galactique'),
+    ('RES019', 'CarteBancaire', 'Attente', '2025-07-01', '11223344', 'CAB019', 'Tour sur la Lune');
 
 INSERT INTO Planete VALUES
     ('Mercure', 230900, 37, 'Tropical'),
