@@ -57,7 +57,7 @@ INSERT INTO Astro_pilote VALUES
     ('6789012345', 500, 'Ecole des Pilotes Intergalactiques'),
     ('2345678901', 750, 'Académie Spatiale de la Galaxie'),
     ('8901234567', 1000, 'Université Stellaire de l Espace'),
-    ('4567890123', 800, 'Centre de Formation Astronautique Lunaire')
+    ('4567890123', 800, 'Centre de Formation Astronautique Lunaire');
 
 INSERT INTO Type_vai VALUES
     ('SpaceX', 'Falcon 9', '12345678'),
