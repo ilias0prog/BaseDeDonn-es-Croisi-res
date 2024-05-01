@@ -8,7 +8,7 @@ Coex Temps grave bio (Insert Planette,Update planette spatial)
 */
 
 
-CREATE TRIGGER ReserverCabineOccupee BEFORE INSERT ON Reservation
+CREATE TRIGGER ReserverCabineOccupee_Select BEFORE INSERT ON Reservation
 FOR EACH ROW BEGIN
     DECLARE dispoCabine BOOLEAN;
     -- Si la cabine qu'on essaie de réserver est occupée, on crée une erreur ce qui annule l'insertion
@@ -17,12 +17,20 @@ FOR EACH ROW BEGIN
     END IF;
 END;
 
+CREATE TRIGGER ReserverCabineOccupee_UPDATE BEFORE UPDATE ON Reservation
+FOR EACH ROW BEGIN
+    DECLARE dispoCabine BOOLEAN;
+    -- Si la cabine qu'on essaie de réserver est occupée, on crée une erreur ce qui annule la mise à jour
+    IF (NEW.Code_cabine IN (SELECT Code FROM Cabine_spatiale WHERE `Dispo` = TRUE)) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine est déjà occupée.';
+    END IF;
+END;
 
-CREATE TRIGGER ReserverCabine AFTER INSERT ON `Reservation`
+CREATE TRIGGER ReserverCabine AFTER INSERT ON Reservation
 FOR EACH ROW BEGIN
     -- Met à jour la disponibilité de la cabine automatiquement à la réservation
-    UPDATE Cabine_spatiale SET Dispo=true WHERE Code_cabine=NEW.Code_cabine;
-END;
+    UPDATE Cabine_spatiale SET Dispo=true WHERE Code=NEW.Code_cabine;
+END
 
 
 CREATE TRIGGER EspeceClient BEFORE INSERT ON `Reservation`

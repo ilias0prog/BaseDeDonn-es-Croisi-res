@@ -11,6 +11,5 @@ GRANT SELECT on personnel to travailleurs;
 GRANT SELECT, UPDATE on activite to responsable_animation;
 GRANT SELECT on astro_pilote, Type_vai, Vaisseaux, cabine_spatial to navigateur;
 GRANT SELECT on ALL TABLES to boss;
-
-"PAS FINI ME CRITIQUER PAS"
+ 
 
