@@ -18,11 +18,11 @@ FOR EACH ROW BEGIN
 END;
 
 
-CREATE TRIGGER ReserverCabine AFTER INSERT ON `Reservation`
+CREATE TRIGGER ReserverCabine AFTER INSERT ON Reservation
 FOR EACH ROW BEGIN
     -- Met à jour la disponibilité de la cabine automatiquement à la réservation
-    UPDATE Cabine_spatiale SET Dispo=true WHERE Code_cabine=NEW.Code_cabine;
-END;
+    UPDATE Cabine_spatiale SET Dispo=true WHERE Code=NEW.Code_cabine;
+END
 
 
 CREATE TRIGGER EspeceClient BEFORE INSERT ON `Reservation`
