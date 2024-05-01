@@ -1,15 +1,17 @@
 CREATE ROLE utilisateur;
 CREATE ROLE comptable;
 CREATE ROLE boss;
-CREATE ROLE travailleurs;
+CREATE ROLE Gestionnaire_RH;
 CREATE ROLE responsable_animation;
-CREATE ROLE navigateur;
+CREATE ROLE Gestionnaire_vaisseaux;
 
-GRANT SELECT on client, reservation, cabine_spatial to utilisateur;
+GRANT SELECT ON Client  TO utilisateur;
+GRANT SELECT ON Reservation TO utilisateur;
+GRANT SELECT ON CEP TO utilisateur;
 "faudrais une vue pour donner les privileges au comptable"
-GRANT SELECT on personnel to travailleurs; 
-GRANT SELECT, UPDATE on activite to responsable_animation;
-GRANT SELECT on astro_pilote, Type_vai, Vaisseaux, cabine_spatial to navigateur;
-GRANT SELECT on ALL TABLES to boss;
+GRANT SELECT, UPDATE ON Personnel, Astro_pilote TO Gestionnaire_RH; 
+GRANT SELECT, UPDATE on Activite to responsable_animation;
+GRANT SELECT on Astro_pilote, Type_vai, Vaisseaux, Cabine_spatial to Gestionnaire_vaisseaux;
+GRANT SELECT on ALL TABLES to Patron;
  
 

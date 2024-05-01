@@ -51,12 +51,12 @@ FOR EACH ROW BEGIN
     END IF;
 END
 
-CREATE TRIGGER ChangementDEspece BEFORE UPDATE ON `Client`
-FOR EACH ROW BEGIN
+CREATE TRIGGER ChangementDEspece BEFORE UPDATE ON Client
+FOR EACH ROW 
+BEGIN
     -- Si le client change d'espece alors qu'il a réservé une cabine, toutes les colonnes sont update sauf Espece
-    IF NEW.`Espece` != OLD.`Espece` 
-    AND `Ncli` IN SELECT `Ncli` FROM  `Reservation`
-    THEN SET NEW.`Espece` = OLD.`Espece`
+    IF NEW.Espece != OLD.Espece AND NEW.Ncli IN (SELECT Ncli FROM  Reservation) THEN
+        SET NEW.Espece = OLD.Espece;
     END IF;
 END;
 
