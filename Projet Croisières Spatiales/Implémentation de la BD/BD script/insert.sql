@@ -115,16 +115,16 @@ INSERT INTO Reservation VALUES
     ('RES007', 'CarteBancaire', 'Confirmee', '2024-07-01', '90123453', 'CAB007', 'Méditation spatiale'),
     ('RES008', 'Crypto', 'Attente', '2024-08-01', '01234567', 'CAB008', 'Projection de films'),
     ('RES009', 'Stardust', 'Annulee', '2024-09-01', '10234567', 'CAB009', 'Concert extraterrestre');
-    ('RES010', 'CarteBancaire', 'Confirmee', '2024-10-01', '22334455', 'CAB010', 'Observation des nébuleuses'),
-    ('RES011', 'Crypto', 'Attente', '2024-11-01', '33445566', 'CAB011', 'Tour en vaisseau spatial'),
-    ('RES012', 'Stardust', 'Confirmee', '2024-12-01', '44556677', 'CAB012', 'Simulation de sauts hyperspatiaux'),
-    ('RES013', 'CarteBancaire', 'Confirmee', '2025-01-01', '55667788', 'CAB013', 'Rencontre avec des extraterrestres'),
-    ('RES014', 'Crypto', 'Confirmee', '2025-02-01', '66778899', 'CAB014', 'Observation de planètes lointaines'),
-    ('RES015', 'Stardust', 'Attente', '2025-03-01', '77889900', 'CAB015', 'Expérience de téléportation'),
-    ('RES016', 'CarteBancaire', 'Confirmee', '2025-04-01', '88990011', 'CAB016', 'Exploration d une station spatiale abandonnée'),
-    ('RES017', 'Crypto', 'Attente', '2025-05-01', '99001122', 'CAB017', 'Atelier de construction de vaisseaux'),
-    ('RES018', 'Stardust', 'Annulee', '2025-06-01', '00112233', 'CAB018', 'Soirée galactique'),
-    ('RES019', 'CarteBancaire', 'Attente', '2025-07-01', '11223344', 'CAB019', 'Tour sur la Lune');
+    ('RES010', 'CarteBancaire', 'Confirmee', '2024-10-01', '22334455', 'CAB010', 'Simulateur de gravité'),
+    ('RES011', 'Crypto', 'Attente', '2024-11-01', '33445566', 'CAB011', 'Exploration spatiale'),
+    ('RES012', 'Stardust', 'Confirmee', '2024-12-01', '44556677', 'CAB012', 'Méditation spatiale'),
+    ('RES013', 'CarteBancaire', 'Confirmee', '2025-01-01', '55667788', 'CAB013', 'Observation des étoiles'),
+    ('RES014', 'Crypto', 'Confirmee', '2025-02-01', '66778899', 'CAB014', 'Danse interstellaire'),
+    ('RES015', 'Stardust', 'Attente', '2025-03-01', '77889900', 'CAB015', 'Cuisine intergalactique'),
+    ('RES016', 'CarteBancaire', 'Confirmee', '2025-04-01', '88990011', 'CAB016', 'Projection de films'),
+    ('RES017', 'Crypto', 'Attente', '2025-05-01', '99001122', 'CAB017', 'Simulateur de gravité'),
+    ('RES018', 'Stardust', 'Annulee', '2025-06-01', '00112233', 'CAB018', 'Observation des étoiles'),
+    ('RES019', 'CarteBancaire', 'Attente', '2025-07-01', '11223344', 'CAB019', 'Atelier de robots');
 
 INSERT INTO Planete VALUES
     ('Mercure', 230900, 37, 'Tropical'),
