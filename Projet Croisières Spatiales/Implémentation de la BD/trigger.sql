@@ -1,40 +1,31 @@
-/*
-Liste des Triggers à faire:
---------------------------
-Disponibilité de la cabine (Update de cabine spatial, insert de cabine spatial,Update reservation)
-Equ de type vaisseaaux 
-Equ cabine spatial 
-Coex Temps grave bio (Insert Planette,Update planette spatial)
-*/
-
+DELIMITER //
 
 CREATE TRIGGER ReserverCabineOccupee_Select BEFORE INSERT ON Reservation
 FOR EACH ROW BEGIN
     DECLARE dispoCabine BOOLEAN;
-    -- Si la cabine qu'on essaie de réserver est occupée, on crée une erreur ce qui annule l'insertion
+    -- Si la cabine qu'on essaie de reserver est occupee, on cree une erreur ce qui annule l'insertion
     IF (NEW.Code_cabine IN (SELECT Code FROM Cabine_spatiale WHERE `Dispo` = true)) THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine est déjà occupée.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine est dejà occupee.';
     END IF;
-END;
+END//
 
 CREATE TRIGGER ReserverCabineOccupee_UPDATE BEFORE UPDATE ON Reservation
 FOR EACH ROW BEGIN
     DECLARE dispoCabine BOOLEAN;
-    -- Si la cabine qu'on essaie de réserver est occupée, on crée une erreur ce qui annule la mise à jour
+    -- Si la cabine qu'on essaie de reserver est occupee, on cree une erreur ce qui annule la mise à jour
     IF (NEW.Code_cabine IN (SELECT Code FROM Cabine_spatiale WHERE `Dispo` = TRUE)) THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine est déjà occupée.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine est dejà occupee.';
     END IF;
-END;
+END//
 
 CREATE TRIGGER ReserverCabine AFTER INSERT ON Reservation
 FOR EACH ROW BEGIN
-    -- Met à jour la disponibilité de la cabine automatiquement à la réservation
+    -- Met à jour la disponibilite de la cabine automatiquement à la reservation
     UPDATE Cabine_spatiale SET Dispo=true WHERE Code=NEW.Code_cabine;
-END
-
+END//
 
 CREATE TRIGGER EspeceClient BEFORE INSERT ON `Reservation`
--- Empeche un client de réserver une cabine d'une autre espèce (pour des raisons pratiques liées aux besoins des différentes espèces, aucune discrimination)
+-- Empeche un client de reserver une cabine d'une autre espèce (pour des raisons pratiques liees aux besoins des differentes espèces, aucune discrimination)
 FOR EACH ROW BEGIN
     DECLARE EspeceClient,EspeceCabine varchar(20);
 
@@ -49,37 +40,13 @@ FOR EACH ROW BEGIN
     IF NOT (EspeceClient = EspeceCabine) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cette cabine ne convient pas à ce client';
     END IF;
-END
+END//
 
 CREATE TRIGGER ChangementDEspece BEFORE UPDATE ON Client
 FOR EACH ROW 
 BEGIN
-    -- Si le client change d'espece alors qu'il a réservé une cabine, toutes les colonnes sont update sauf Espece
+    -- Si le client change d'espece alors qu'il a reserve une cabine, toutes les colonnes sont update sauf Espece
     IF NEW.Espece != OLD.Espece AND NEW.Ncli IN (SELECT Ncli FROM  Reservation) THEN
         SET NEW.Espece = OLD.Espece;
     END IF;
-END;
-
---Non utulisé--
-
-CREATE TRIGGER LibererCabineDeleteReservation AFTER DELETE ON  `Reservation`
-FOR EACH ROW BEGIN
-    -- Libère la cabine automatiquement à la suppression de la réservation
-   UPDATE `Cabine_spatiale` SET `Dispo`=TRUE WHERE `Code_cabine`=OLD.`Code_cabine`;
-END;
-
-CREATE TRIGGER LibererCabineUpdateReservation AFTER UPDATE ON `Reservation`
-FOR EACH ROW BEGIN
-    -- Libère la cabine automatiquement à la suppression de la réservation
-    IF NEW.`Status` =  `Annulee`
-    THEN UPDATE `Cabine_spatiale` SET `Dispo`=TRUE WHERE `Code_cabine`=OLD.`Code_cabine`;
-
-CREATE TRIGGER LibererCabineOccupee BEFORE UPDATE ON `Cabine_spatiale`
-FOR EACH ROW BEGIN
-    -- Si la cabine que l'on essaie de libérer (set Dispo to True) est réservée, on garde dispo à False
-    -- Les autres colonnes concernées par le Update seront dont bien modifiée, seule Dispo restera inchangée
-    IF NEW.`Dispo` = TRUE 
-    AND NEW.`Code_cabine` IN SELECT `Code_cabine` FROM  `Reservation` 
-    THEN SET NEW.`Dispo` = OLD.`Dispo`
-    END IF;
-END;
+END//

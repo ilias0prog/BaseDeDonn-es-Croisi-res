@@ -163,7 +163,6 @@ CREATE TABLE `Croisiere` (
 );
 
 
-
 DROP TABLE IF EXISTS `Escale`;
 CREATE TABLE `Escale`(
     `Planete` enum('Mercure','Venus','Terre','Mars','Jupiter','Uranus','Neptune') NOT NULL,
